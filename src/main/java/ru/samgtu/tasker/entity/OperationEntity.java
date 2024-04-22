@@ -22,13 +22,13 @@ public class OperationEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "operation_id")
-    private List<TaskEntity> taskEntityList;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "operation_id")
     private List<ComponentEntity> componentEntityList;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private OrderEntity orderEntity;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "operation_id")
+    private List<TaskEntity> taskEntityList;
 }

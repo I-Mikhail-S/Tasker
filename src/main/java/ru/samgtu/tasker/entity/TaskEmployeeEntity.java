@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "purpose_inventory")
-public class PurposeInventoryEntity extends PurposeEntity {
+@Table(name = "task_employee")
+public class TaskEmployeeEntity extends TaskEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "schedule_id")
-    private ScheduleInventoryEntity scheduleInventoryEntity;
+    private ScheduleEmployeeEntity scheduleEmployeeEntity;
 }

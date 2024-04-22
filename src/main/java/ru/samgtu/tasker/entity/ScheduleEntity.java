@@ -8,15 +8,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Data
-@Builder
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class ScheduleEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "schedule_id")
     private Long id;
 

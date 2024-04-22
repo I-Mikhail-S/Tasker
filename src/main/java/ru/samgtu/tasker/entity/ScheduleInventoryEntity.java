@@ -17,5 +17,5 @@ import java.util.List;
 public class ScheduleInventoryEntity extends ScheduleEntity {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "schedule_id")
-    private List<PurposeInventoryEntity> purposeInventoryEntityList;
+    private List<TaskInventoryEntity> taskInventoryEntityList;
 }

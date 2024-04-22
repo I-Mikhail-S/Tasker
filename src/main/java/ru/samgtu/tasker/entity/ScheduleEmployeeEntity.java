@@ -13,9 +13,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "schedule_inventory")
+@Table(name = "schedule_employee")
 public class ScheduleEmployeeEntity extends ScheduleEntity {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "schedule_id")
-    private List<PurposeEmployeeEntity> purposeEmployeeEntityList;
+    private List<TaskEmployeeEntity> taskEmployeeEntityList;
 }
