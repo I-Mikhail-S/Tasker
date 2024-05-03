@@ -21,6 +21,6 @@ public class ToolEntity {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "inventory_id")
+    @JoinColumn(name = "executable_id")
     private InventoryEntity inventoryEntity;
 }

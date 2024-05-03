@@ -19,9 +19,11 @@ public class MachineEntity {
     @Column(name = "machine_id")
     private Long id;
 
+    private String serialNumber;
+
     private MachineType machineType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "inventory_id")
+    @JoinColumn(name = "executable_id")
     private InventoryEntity inventoryEntity;
 }

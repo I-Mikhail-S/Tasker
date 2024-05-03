@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,13 +23,29 @@ public class OperationEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "operation_id")
-    private List<ComponentEntity> componentEntityList;
+    private List<ComponentEntity> componentEntityList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "orders_id")
     private OrderEntity orderEntity;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "operation_id")
-    private List<TaskEntity> taskEntityList;
+    private List<TaskEntity> taskEntityList = new ArrayList<>();
+
+    public void addComponent(ComponentEntity componentEntity) {
+        this.componentEntityList.add(componentEntity);
+    }
+
+    public void removeComponent(ComponentEntity componentEntity) {
+        this.componentEntityList.remove(componentEntity);
+    }
+
+    public void addTask(TaskEntity taskEntity) {
+        this.taskEntityList.add(taskEntity);
+    }
+
+    public void removeTask(TaskEntity taskEntity) {
+        this.taskEntityList.remove(taskEntity);
+    }
 }

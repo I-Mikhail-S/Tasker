@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -13,14 +14,22 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
+    @Column(name = "orders_id")
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id")
-    private List<OperationEntity> operationEntityList;
+    @JoinColumn(name = "orders_id")
+    private List<OperationEntity> operationEntityList = new ArrayList<>();
+
+    public void addOperation(OperationEntity operationEntity) {
+        this.operationEntityList.add(operationEntity);
+    }
+
+    public void removeOperation(OperationEntity operationEntity) {
+        this.operationEntityList.remove(operationEntity);
+    }
 }

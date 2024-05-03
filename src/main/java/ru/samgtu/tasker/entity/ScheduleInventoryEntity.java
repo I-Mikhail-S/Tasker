@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -17,5 +18,13 @@ import java.util.List;
 public class ScheduleInventoryEntity extends ScheduleEntity {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "schedule_id")
-    private List<TaskInventoryEntity> taskInventoryEntityList;
+    private List<TaskInventoryEntity> taskInventoryEntityList = new ArrayList<>();
+
+    public void addTaskInventory(TaskInventoryEntity taskInventoryEntity) {
+        this.taskInventoryEntityList.add(taskInventoryEntity);
+    }
+
+    public void removeTaskInventory(TaskInventoryEntity taskInventoryEntity) {
+        this.taskInventoryEntityList.remove(taskInventoryEntity);
+    }
 }

@@ -14,11 +14,7 @@ import java.util.UUID;
 @Component
 public class FileUtil {
     private static final Logger LOG = LoggerFactory.getLogger(FileUtil.class);
-    public File convert(MultipartFile file) throws IOException {
-        File convertedFile = new File(file.getOriginalFilename());
-        file.transferTo(convertedFile);
-        return convertedFile;
-    }
+
     public File convertMultiPartFileToFile(final MultipartFile multipartFile) {
 
         File file = new File(multipartFile.getOriginalFilename());
@@ -29,7 +25,6 @@ public class FileUtil {
             while ((bytesRead = inputStream.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, bytesRead);
             }
-            System.out.println(file.getName());
             return file;
         } catch (IOException e) {
             LOG.error("Error occurred while converting the multipart file", e);

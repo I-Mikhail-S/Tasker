@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.samgtu.tasker.api.type.EmployeeType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -25,7 +26,7 @@ public class EmployeeEntity extends ExecutableEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
-    private List<DynamicTypeEntity> dynamicTypeEntityList;
+    private List<DynamicTypeEntity> dynamicTypeEntityList = new ArrayList<>();
 
     @OneToOne
     private ScheduleEntity scheduleEntity;
@@ -37,5 +38,13 @@ public class EmployeeEntity extends ExecutableEntity {
     @Override
     public void perform() {
 
+    }
+
+    public void addDynamicType(DynamicTypeEntity dynamicTypeEntity) {
+        this.dynamicTypeEntityList.add(dynamicTypeEntity);
+    }
+
+    public void removeDynamicType(DynamicTypeEntity dynamicTypeEntity) {
+        this.dynamicTypeEntityList.remove(dynamicTypeEntity);
     }
 }
