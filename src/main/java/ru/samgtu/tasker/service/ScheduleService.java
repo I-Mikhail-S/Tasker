@@ -55,4 +55,14 @@ public class ScheduleService {
         return new ScheduleResponseDTO(taskMapper.toResponseList(scheduledTasks));
     }
 
+    public List<ScheduleResponseDTO> findAllSchedules() {
+        List<SheduleEntity> sheduleEntityList = scheduleRepository.findAll();
+        List<ScheduleResponseDTO> scheduleResponseDTOList = new ArrayList<>();
+
+        sheduleEntityList.stream().forEach(x -> scheduleResponseDTOList.add(
+                new ScheduleResponseDTO(taskMapper.toResponseList(x.getTaskEntityList()))));
+
+        return scheduleResponseDTOList;
+    }
+
 }
