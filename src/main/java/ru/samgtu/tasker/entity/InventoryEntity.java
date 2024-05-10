@@ -22,16 +22,18 @@ public class InventoryEntity {
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "executable_id")
+    @JoinColumn(name = "inventory_id")
     private List<MachineEntity> machineEntityList = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "executable_id")
+    @JoinColumn(name = "inventory_id")
     private List<ToolEntity> toolEntityList = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "task_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "inventory_id")
     private List<TaskEntity> taskEntityList = new ArrayList<>();
+
+    private String name;
 
     public void addMachine(MachineEntity machineEntity) {
         this.machineEntityList.add(machineEntity);

@@ -21,8 +21,8 @@ public class SheduleEntity {
     @Column(name = "shedule_id")
     private Long id;
 
-    @OneToMany
-    @JoinColumn(name = "task_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shedule_id")
     private List<TaskEntity> taskEntityList = new ArrayList<>();
 
     public void addTask(TaskEntity taskEntity) {

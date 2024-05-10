@@ -25,11 +25,11 @@ public class MachineEntity {
 
     //@ElementCollection
     //@CollectionTable(name = "type_skill")
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type_skill")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "machine_id")
     private List<TypeEntity> types;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "executable_id")
+    @JoinColumn(name = "inventory_id")
     private InventoryEntity inventoryEntity;
 }

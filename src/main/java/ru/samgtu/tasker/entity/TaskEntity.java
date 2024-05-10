@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.samgtu.tasker.service.ScheduleService;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -28,12 +30,19 @@ public class TaskEntity {
     @JoinColumn(name = "inventory_id")
     private InventoryEntity inventoryEntity;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "shedule_id")
+    private SheduleEntity sheduleEntity;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "task_id")
     @Column(name = "requaired")
-    private SkillLevel requairedSkillLevel;
+    private List<SkillLevel> requiredSkillLevelList;
 
     private LocalDateTime timeStart;
     private LocalDateTime timeEnd;
+
+    private Boolean isScheduled;
 
     // нужно добвить проверки (можно позже):
     // есть ли у исполнителя должная квалификация

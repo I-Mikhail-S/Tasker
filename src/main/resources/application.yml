@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/tasker
+    url: jdbc:mysql://localhost:3306/taskerdb
     username: root
-    password: admin1
+    password: mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:

@@ -24,24 +24,24 @@ public class EmployeeEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
-    private List<TypeEntity> typeEntityList = new ArrayList<>();
+    private List<SkillLevel> skillLevelList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "state_id")
     private DivisionEntity stateEntity;
 
     @OneToMany
-    @JoinColumn(name = "task_id")
+    @JoinColumn(name = "employee_id")
     private List<TaskEntity> taskEntityList = new ArrayList<>();
 
-    public void addType(TypeEntity typeEntity) {
-        this.typeEntityList.add(typeEntity);
+    public void addSkillLevel(SkillLevel skillLevel) {
+        this.skillLevelList.add(skillLevel);
     }
 
-    public void removeType(TypeEntity typeEntity) {
-        this.typeEntityList.remove(typeEntity);
+    public void removeSkillLevel(SkillLevel skillLevel) {
+        this.skillLevelList.remove(skillLevel);
     }
 
     public void addTask(TaskEntity taskEntity) {

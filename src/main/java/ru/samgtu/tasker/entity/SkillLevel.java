@@ -18,7 +18,7 @@ public class SkillLevel {
     @Column(name = "skill_level_id")
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "type_skill_id")
     private TypeEntity skill;
 

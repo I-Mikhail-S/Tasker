@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.samgtu.tasker.api.exception.NotFoundEmployeeException;
 import ru.samgtu.tasker.api.exception.NotFoundInventoryException;
+import ru.samgtu.tasker.api.exception.NotFoundMachineException;
 import ru.samgtu.tasker.service.DataLoaderService;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class DataLoaderController {
 
     @PostMapping("/excel")
     public ResponseEntity<?> loadDataFromExcel(@RequestParam("file") MultipartFile multipartFile)
-            throws IOException, NotFoundEmployeeException, NotFoundInventoryException {
+            throws IOException, NotFoundEmployeeException, NotFoundInventoryException, NotFoundMachineException {
         dataLoaderService.parseExcel(multipartFile);
         return new ResponseEntity<>(HttpStatus.OK);
     }
