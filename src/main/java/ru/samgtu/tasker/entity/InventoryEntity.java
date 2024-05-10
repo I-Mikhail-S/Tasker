@@ -15,11 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "inventory")
-public class InventoryEntity extends ExecutableEntity {
+public class InventoryEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inventory_id")
     private Long id;
-
-    private String name;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "executable_id")
@@ -29,13 +29,9 @@ public class InventoryEntity extends ExecutableEntity {
     @JoinColumn(name = "executable_id")
     private List<ToolEntity> toolEntityList = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "state_id")
-    private StateEntity stateEntity;
-    @Override
-    public void perform() {
-
-    }
+    @OneToMany
+    @JoinColumn(name = "task_id")
+    private List<TaskEntity> taskEntityList = new ArrayList<>();
 
     public void addMachine(MachineEntity machineEntity) {
         this.machineEntityList.add(machineEntity);
@@ -51,5 +47,13 @@ public class InventoryEntity extends ExecutableEntity {
 
     public void removeTool(ToolEntity toolEntity) {
         this.toolEntityList.remove(toolEntity);
+    }
+
+    public void addTask(TaskEntity taskEntity) {
+        this.taskEntityList.add(taskEntity);
+    }
+
+    public void removeTask(TaskEntity taskEntity) {
+        this.taskEntityList.remove(taskEntity);
     }
 }

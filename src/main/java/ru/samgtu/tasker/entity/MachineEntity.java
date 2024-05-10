@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.samgtu.tasker.api.type.MachineType;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -19,9 +20,14 @@ public class MachineEntity {
     @Column(name = "machine_id")
     private Long id;
 
+    @Column(name = "serial_number_machine")
     private String serialNumber;
 
-    private MachineType machineType;
+    //@ElementCollection
+    //@CollectionTable(name = "type_skill")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_skill")
+    private List<TypeEntity> types;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "executable_id")

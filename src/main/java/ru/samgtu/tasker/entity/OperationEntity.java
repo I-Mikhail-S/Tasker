@@ -23,21 +23,21 @@ public class OperationEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "operation_id")
-    private List<ComponentEntity> componentEntityList = new ArrayList<>();
+    private List<DetailEntity> componentEntityList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "orders_id")
     private OrderEntity orderEntity;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL) // ???
     @JoinColumn(name = "operation_id")
     private List<TaskEntity> taskEntityList = new ArrayList<>();
 
-    public void addComponent(ComponentEntity componentEntity) {
+    public void addComponent(DetailEntity componentEntity) {
         this.componentEntityList.add(componentEntity);
     }
 
-    public void removeComponent(ComponentEntity componentEntity) {
+    public void removeComponent(DetailEntity componentEntity) {
         this.componentEntityList.remove(componentEntity);
     }
 

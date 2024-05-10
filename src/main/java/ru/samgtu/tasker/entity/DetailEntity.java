@@ -12,17 +12,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "component")
-public class ComponentEntity {
+public class DetailEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "component_id")
     private Long id;
 
-    @Column(name = "type")
-    private String type;
-
     @OneToOne
-    @JoinColumn(name = "detail_id")
-    private DetailEntity detail;
+    @JoinColumn(name = "component_id")
+    private ComponentEntity type;
+    private int quantity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "operation_id")
+    private OperationEntity operationEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "warehouse_id")
+    private WarehouseEntity warehouseEntity;
 
 }

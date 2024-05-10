@@ -25,13 +25,13 @@ public class WarehouseEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "warehouse_id")
-    private List<ComponentEntity> componentEntityList = new ArrayList<>();
+    private List<DetailEntity> componentEntityList = new ArrayList<>();
 
-    public void addComponent(ComponentEntity componentEntity) {
+    public void addComponent(DetailEntity componentEntity) {
         this.componentEntityList.add(componentEntity);
     }
 
-    public void removeComponent(ComponentEntity componentEntity) {
+    public void removeComponent(DetailEntity componentEntity) {
         this.componentEntityList.remove(componentEntity);
     }
 }

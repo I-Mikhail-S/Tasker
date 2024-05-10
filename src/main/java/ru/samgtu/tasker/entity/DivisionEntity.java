@@ -11,7 +11,6 @@ import java.util.List;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "division")
@@ -23,13 +22,38 @@ public class DivisionEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "division_id")
-    private List<StateEntity> stateEntityList = new ArrayList<>();
+    private List<EmployeeEntity> employeeEntityList = new ArrayList<>();
 
-    public void addState(StateEntity stateEntity) {
-        this.stateEntityList.add(stateEntity);
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "division_id")
+    private List<InventoryEntity> inventoryEntityList = new ArrayList<>();
+
+    @Transient
+    private static final List<DivisionEntity> DIVISION_ENTITIES = new ArrayList<>();
+
+    public DivisionEntity() {
+        DIVISION_ENTITIES.add(this);
     }
 
-    public void removeState(StateEntity stateEntity) {
-        this.stateEntityList.remove(stateEntity);
+    public DivisionEntity(List<EmployeeEntity> employeeEntityList, List<InventoryEntity> inventoryEntityList) {
+        this.employeeEntityList = employeeEntityList;
+        this.inventoryEntityList = inventoryEntityList;
+        DIVISION_ENTITIES.add(this);
+    }
+
+    public void addEmployee(EmployeeEntity employeeEntity) {
+        this.employeeEntityList.add(employeeEntity);
+    }
+
+    public void removeEmployee(EmployeeEntity employeeEntity) {
+        this.employeeEntityList.remove(employeeEntity);
+    }
+
+    public void addInventory(InventoryEntity inventoryEntity) {
+        this.inventoryEntityList.add(inventoryEntity);
+    }
+
+    public void removeInventory(InventoryEntity inventoryEntity) {
+        this.inventoryEntityList.remove(inventoryEntity);
     }
 }

@@ -18,6 +18,7 @@ public class ToolEntity {
     @Column(name = "tool_id")
     private Long id;
 
+    @Column(name = "tool_name")
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)

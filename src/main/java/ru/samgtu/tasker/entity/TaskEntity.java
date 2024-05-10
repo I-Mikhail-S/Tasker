@@ -6,26 +6,38 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+import java.time.LocalDateTime;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class TaskEntity {
+@Table(name = "task")
+public class TaskEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id")
     private Long id;
 
-    @OneToOne
-    private ExecutableEntity executable;
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private EmployeeEntity employeeEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "inventory_id")
+    private InventoryEntity inventoryEntity;
 
     @OneToOne
-    private TimeSpendEntity timeSpend;
+    @Column(name = "requaired")
+    private SkillLevel requairedSkillLevel;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "operation_id")
-    private OperationEntity operationEntity;
+    private LocalDateTime timeStart;
+    private LocalDateTime timeEnd;
+
+    // нужно добвить проверки (можно позже):
+    // есть ли у исполнителя должная квалификация
+    // соотнести skillLevel у employee с required skillLevel
+
+    // соответствует ли тип Skill у inventory (Machine) со Skill из skillLevel
 }
