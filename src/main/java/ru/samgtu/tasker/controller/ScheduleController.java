@@ -1,17 +1,15 @@
 package ru.samgtu.tasker.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.samgtu.tasker.api.dto.response.ScheduleResponseDTO;
-import ru.samgtu.tasker.api.exception.NotFoundEmployeeException;
-import ru.samgtu.tasker.api.exception.NotFoundInventoryException;
-import ru.samgtu.tasker.api.exception.NotFoundMachineException;
+import ru.samgtu.tasker.api.exception.WrongAppointmentTime;
 import ru.samgtu.tasker.service.ScheduleService;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -23,9 +21,14 @@ public class ScheduleController {
         this.scheduleService = scheduleService;
     }
 
-    @PostMapping()
-    public ResponseEntity<ScheduleResponseDTO> createSchedule() {
+/*    @PostMapping("/create")
+    public ResponseEntity<ScheduleResponseDTO> createSchedule() throws WrongAppointmentTime {
         return ResponseEntity.ok(scheduleService.createSchedule());
+    }*/
+
+    @PostMapping("/update")
+    public ResponseEntity<ScheduleResponseDTO> updateSchedule() throws WrongAppointmentTime {
+        return ResponseEntity.ok(scheduleService.updateSchedule());
     }
 
     @GetMapping()

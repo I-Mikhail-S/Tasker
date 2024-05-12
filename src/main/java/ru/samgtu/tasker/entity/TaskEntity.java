@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import ru.samgtu.tasker.service.ScheduleService;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -37,7 +38,7 @@ public class TaskEntity {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "task_id")
     @Column(name = "requaired")
-    private List<SkillLevel> requiredSkillLevelList;
+    private List<SkillLevel> requiredSkillLevelList = new ArrayList<>();
 
     private LocalDateTime timeStart;
     private LocalDateTime timeEnd;

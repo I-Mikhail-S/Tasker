@@ -21,19 +21,19 @@ public class InventoryEntity {
     @Column(name = "inventory_id")
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    private String name;
+
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "inventory_id")
     private List<MachineEntity> machineEntityList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "inventory_id")
     private List<ToolEntity> toolEntityList = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "inventory_id")
     private List<TaskEntity> taskEntityList = new ArrayList<>();
-
-    private String name;
 
     public void addMachine(MachineEntity machineEntity) {
         this.machineEntityList.add(machineEntity);

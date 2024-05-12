@@ -2,6 +2,7 @@ package ru.samgtu.tasker.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import ru.samgtu.tasker.api.dto.request.TaskCreateRequestDTO;
 import ru.samgtu.tasker.api.dto.response.TaskResponseDTO;
 import ru.samgtu.tasker.entity.TaskEntity;
 
@@ -18,4 +19,8 @@ public interface TaskMapper {
     TaskResponseDTO toResponse(TaskEntity taskEntity);
 
     List<TaskResponseDTO> toResponseList(List<TaskEntity> taskEntityList);
+
+    @Mapping(target = "employeeEntity.id", source = "employeeId")
+    @Mapping(target = "inventoryEntity.id", source = "inventoryId")
+    TaskEntity toEntity(TaskCreateRequestDTO request);
 }
