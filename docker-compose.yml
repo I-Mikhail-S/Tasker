@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  db:
+      image: 'mysql:latest'
+      container_name: db
+      environment:
+        MYSQL_ROOT_PASSWORD: mysql
+        MYSQL_DATABASE: tasker
+        MYSQL_PASSWORD: mysql
+      ports:
+        - '3307:3306'
+      networks:
+        - rest
+
+
+  app:
+    image: 'tasker-api:latest'
+    #build:
+    #  context: .
+    container_name: app
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/taskerdb?createDatabaseIfNotExist=true
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+    networks:
+        - rest
+
+networks:
+  rest:
