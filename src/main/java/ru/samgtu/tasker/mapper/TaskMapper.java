@@ -12,10 +12,10 @@ import java.util.List;
 public interface TaskMapper {
     @Mapping(target = "employeeId", source = "employeeEntity.id")
     @Mapping(target = "employeeName", source = "employeeEntity.name")
-    @Mapping(target = "employeeSkillLevel", source = "employeeEntity.skillLevelList")
+    //@Mapping(target = "employeeSkillLevel", source = "employeeEntity.skillLevelList")
     @Mapping(target = "inventoryId", source = "inventoryEntity.id")
     @Mapping(target = "inventoryName", source = "inventoryEntity.name")
-    @Mapping(target = "requiredSkillLevel", source = "requiredSkillLevelList")
+    //@Mapping(target = "requiredSkillLevel", source = "requiredSkillLevelList")
     TaskResponseDTO toResponse(TaskEntity taskEntity);
 
     List<TaskResponseDTO> toResponseList(List<TaskEntity> taskEntityList);

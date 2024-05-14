@@ -46,6 +46,8 @@ public class TaskService {
             skillLevelList.add(skillLevel);
         }
         task.setRequiredSkillLevelList(skillLevelList);
+        task.setEmployeeEntity(employee);
+        task.setInventoryEntity(inventory);
         employee.addTask(task);
         inventory.addTask(task);
         employeeRepository.save(employee);

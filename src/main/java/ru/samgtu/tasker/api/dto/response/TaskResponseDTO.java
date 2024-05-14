@@ -17,10 +17,10 @@ public class TaskResponseDTO {
     private Long id;
     private Long employeeId;
     private String employeeName;
-    private List<SkillLevel> employeeSkillLevel;
+    //private List<SkillLevel> employeeSkillLevel;
     private Long inventoryId;
     private String inventoryName;
-    private List<SkillLevel> requiredSkillLevel;
+    //private List<SkillLevel> requiredSkillLevel;
     private LocalDateTime timeStart;
     private LocalDateTime timeEnd;
 }

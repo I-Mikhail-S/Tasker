@@ -106,7 +106,7 @@ public class DataLoaderService {
                     }
                 }
                 Row nextRow = sheet.getRow(i+1);
-                if (nextRow == null || row.getCell(0).getNumericCellValue() != 0.0f) {
+                if (nextRow == null || nextRow.getCell(0).getNumericCellValue() != 0.0f) {
                     machine.setTypes(typeEntityList);
                     machineRepository.save(machine);
                     typeEntityList = new ArrayList<>();

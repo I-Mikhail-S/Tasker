@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/v1/dataloader")
+@CrossOrigin
 public class DataLoaderController {
     private final DataLoaderService dataLoaderService;
     @Autowired

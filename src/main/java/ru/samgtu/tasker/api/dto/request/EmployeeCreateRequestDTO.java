@@ -5,11 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SkillLevelRequestDTO {
-    private String skill;
-    private int level;
+public class EmployeeCreateRequestDTO {
+    private String name;
+    private List<SkillLevelRequestDTO> skillLevelRequestDTOList;
 }

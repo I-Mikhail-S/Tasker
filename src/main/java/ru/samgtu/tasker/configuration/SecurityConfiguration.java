@@ -55,13 +55,16 @@ public class SecurityConfiguration {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/api/v1/dataloader").permitAll();
+                    auth.requestMatchers("/api/v1/").permitAll();
 
                     auth.anyRequest().permitAll();
 
                 });
 
-
+        http.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
+        http.sessionManagement(
+                session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        );
 
         return http.build();
     }
